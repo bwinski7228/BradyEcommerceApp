@@ -26,26 +26,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onPreviewClicked() {
-        val contactName = edit_text_contact_name.text.toString()
-        val contactNumber = edit_text_contact_number.text.toString()
-        val myDisplayName = edit_text_my_display_name.text.toString()
-        val includeJunior = check_box_junior.isChecked
-        val jobTitle = spinner_job_title.selectedItem?.toString()
-        val immediateStart = check_box_immediate_start.isChecked
-        val startDate = edit_text_start_date.text.toString()
+
+        val message = Message(
+            edit_text_contact_name.text.toString(),
+            edit_text_contact_number.text.toString(),
+            edit_text_my_display_name.text.toString(),
+            includeJunior = check_box_junior.isChecked,
+            spinner_job_title.selectedItem?.toString(),
+            check_box_immediate_start.isChecked,
+            edit_text_start_date.text.toString()
+        )
 
         //val testString = "Contact Name: $contactName, Contact Number: $contactNumber, My Display Name: $myDisplayName, Include Junior: $includeJunior, Job Title: $jobTitle, Immediate Start: $immediateStart, Start Date: $startDate"
 
         //Toast.makeText(this, testString, Toast.LENGTH_LONG).show()
 
         val previewActivityIntent = Intent(this, PreviewActivity::class.java)
-        previewActivityIntent.putExtra("Contact Name", contactName)
-        previewActivityIntent.putExtra("Contact Number", contactNumber)
-        previewActivityIntent.putExtra("My Display Name", myDisplayName)
-        previewActivityIntent.putExtra("Include Junior", includeJunior)
-        previewActivityIntent.putExtra("Job Title", jobTitle)
-        previewActivityIntent.putExtra("Immediate Start", immediateStart)
-        previewActivityIntent.putExtra("Start Date", startDate)
+        previewActivityIntent.putExtra("Message", message)
         startActivity(previewActivityIntent)
     }
 }
