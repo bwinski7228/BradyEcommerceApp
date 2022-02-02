@@ -28,7 +28,9 @@ class MyRecyclerViewAdapter(private val BeveragesList:List<Beverage>, private va
 class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
     fun bind(Beverage: Beverage, clickListener:(Beverage)->Unit) {
-        view.name_text_view.text = Beverage.brand
+        view.name_text_view.text = Beverage.name
+        view.text_view_price.text = Beverage.price.toString()
+        view.image_view_project_icon.setImageResource(Beverage.image)
         view.setOnClickListener{
             clickListener(Beverage)
         }

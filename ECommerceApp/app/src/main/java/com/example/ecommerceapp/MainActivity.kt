@@ -4,32 +4,44 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.bottomNavigationView
+import kotlinx.android.synthetic.main.fragment_first.*
 
 class MainActivity : AppCompatActivity() {
-
-    val BeverageList = listOf(
-        Beverage("Coke", "Classic", "Coca-Cola"),
-        Beverage("Coke", "Vanilla", "Coca-Cola"),
-        Beverage("Coke", "Cherry", "Coca-Cola"),
-        Beverage("Sprite", "Classic", "Coca-Cola"),
-        Beverage("Mountain Dew", "Classic", "Pepsi"),
-        Beverage("Mountain Dew", "Baja Blast", "Pepsi"),
-        Beverage("Mountain Dew", "Code Red", "Pepsi"),
-    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        my_recyclerView.setBackgroundColor(Color.YELLOW)
-        my_recyclerView.layoutManager = LinearLayoutManager(this)
-        my_recyclerView.adapter = MyRecyclerViewAdapter(BeverageList, {selectedBeverageItem:Beverage->listItemClicked(selectedBeverageItem)})
+//        my_recycler_view.layoutManager = LinearLayoutManager(this)
+//        my_recycler_view.adapter = MyRecyclerViewAdapter(
+//            BeverageList,
+//            { selectedBeverageItem: Beverage -> listItemClicked(selectedBeverageItem) })
+
+        val firstFragment=FirstFragment()
+        val secondFragment=SecondFragment()
+        val thirdFragment=ThirdFragment()
+
+        setCurrentFragment(firstFragment)
+
+        bottomNavigationView.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.home->setCurrentFragment(firstFragment)
+                R.id.person->setCurrentFragment(secondFragment)
+                R.id.settings->setCurrentFragment(thirdFragment)
+
+            }
+            true
+        }
     }
 
-    private fun listItemClicked(Beverage: Beverage) {
-        Toast.makeText(this@MainActivity,
-            "Supplier name is ${Beverage.producer}", Toast.LENGTH_LONG).show()
-    }
+    private fun setCurrentFragment(fragment: Fragment)=
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.flFragment,fragment)
+            commit()
+        }
+
 }
