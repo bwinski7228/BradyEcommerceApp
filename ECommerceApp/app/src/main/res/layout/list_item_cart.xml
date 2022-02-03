@@ -14,7 +14,7 @@
         android:background="#CAE0F1">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/card_view_project_icon_container"
+            android:id="@+id/cart_card_view_project_icon_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
@@ -22,7 +22,7 @@
             app:cardElevation="0dp">
 
             <ImageView
-                android:id="@+id/image_view_project_icon"
+                android:id="@+id/cart_image_view_project_icon"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:scaleType="centerCrop"
@@ -31,11 +31,11 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/name_text_view"
+            android:id="@+id/cart_name_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/card_view_project_icon_container"
-            android:layout_toEndOf="@+id/card_view_project_icon_container"
+            android:layout_alignTop="@+id/cart_card_view_project_icon_container"
+            android:layout_toEndOf="@+id/cart_card_view_project_icon_container"
             android:fontFamily="sans-serif-medium"
             android:text="Diet Coke"
             android:textColor="#222222"
@@ -46,13 +46,13 @@
             android:layout_marginTop="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/name_text_view"
-            android:layout_toEndOf="@id/card_view_project_icon_container"
+            android:layout_below="@id/cart_name_text_view"
+            android:layout_toEndOf="@id/cart_card_view_project_icon_container"
             android:orientation="horizontal">
 
 
             <TextView
-                android:id="@+id/text_view_price"
+                android:id="@+id/cart_text_view_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
@@ -61,7 +61,7 @@
                 android:textSize="40sp" />
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_view_project_icon_container2"
+                android:id="@+id/cart_card_view_project_icon_container2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
@@ -76,8 +76,8 @@
                     android:layout_marginTop="0dp"
                     android:background="#EF9A9A"
                     android:backgroundTint="#EF9A9A"
-                    android:text="+"
-                    android:textSize="30sp"
+                    android:text="Remove"
+                    android:textSize="20sp"
                     app:iconTint="#E53935" />
 
             </androidx.cardview.widget.CardView>

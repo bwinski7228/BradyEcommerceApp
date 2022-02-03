@@ -24,14 +24,15 @@ class MainActivity : AppCompatActivity() {
         val firstFragment=FirstFragment()
         val secondFragment=SecondFragment()
         val thirdFragment=ThirdFragment()
+        val fourthFragment=PromoPage()
 
         setCurrentFragment(firstFragment)
 
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.home->setCurrentFragment(firstFragment)
-                R.id.person->setCurrentFragment(secondFragment)
-                R.id.settings->setCurrentFragment(thirdFragment)
+                R.id.cart->setCurrentFragment(secondFragment)
+                R.id.profile->setCurrentFragment(thirdFragment)
 
             }
             true
