@@ -1,5 +1,6 @@
 package com.example.ecommerceapp
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +31,10 @@ class CartViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
     fun bind(Beverage: Beverage) {
         view.cart_name_text_view.text = Beverage.name
-        view.cart_text_view_price.text = Beverage.price.toString()
+        view.cart_text_view_price.text = "$" + Beverage.price.toString()
         view.cart_image_view_project_icon.setImageResource(Beverage.image)
+        if (Beverage.promo) {
+            view.cart_text_view_price.setTextColor(Color.parseColor("#F44336"))
+        }
     }
 }

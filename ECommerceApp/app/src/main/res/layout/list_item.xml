@@ -71,6 +71,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/Widget.AppCompat.Button"
+                    android:id="@+id/button_add_to_cart"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="0dp"

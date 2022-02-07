@@ -10,6 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ECommerceApp">
         <activity
+            android:name=".PaymentMethods"
+            android:parentActivityName=".MainActivity"
+            android:label="Payment Methods"
+            android:exported="false" />
+        <activity
+            android:name=".PrevOrders"
+            android:parentActivityName=".MainActivity"
+            android:label="Previous Orders"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

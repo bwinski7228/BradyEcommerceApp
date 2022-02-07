@@ -8,25 +8,25 @@ import android.widget.ExpandableListView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.list_item.view.*
 
-class MyRecyclerViewAdapter(private val BeveragesList:List<Beverage>, private val clickListener:(Beverage)->Unit): RecyclerView.Adapter<MyViewHolder>() {
+class PromoRecyclerViewAdapter(private val BeveragesList:List<Beverage>, private val clickListener:(Beverage)->Unit): RecyclerView.Adapter<PromoViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PromoViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val listItem = layoutInflater.inflate(R.layout.list_item, parent, false)
-        return MyViewHolder(listItem)
+        return PromoViewHolder(listItem)
     }
 
     override fun getItemCount(): Int {
-        return 7
+        return 3
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PromoViewHolder, position: Int) {
         holder.bind(BeveragesList[position], clickListener)
     }
 
 }
 
-class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+class PromoViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
     fun bind(Beverage: Beverage, clickListener:(Beverage)->Unit) {
         view.name_text_view.text = Beverage.name
