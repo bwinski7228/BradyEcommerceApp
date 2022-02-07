@@ -72,6 +72,7 @@
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/Widget.AppCompat.Button"
                     android:layout_width="100dp"
+                    android:id="@+id/button_remove_from_cart"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="0dp"
                     android:background="#EF9A9A"

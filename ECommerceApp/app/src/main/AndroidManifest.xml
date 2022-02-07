@@ -15,7 +15,7 @@
             android:label="Payment Methods"
             android:exported="false" />
         <activity
-            android:name=".PrevOrders"
+            android:name=".PrevOrderPage"
             android:parentActivityName=".MainActivity"
             android:label="Previous Orders"
             android:exported="false" />

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.list_item.view.*
 import kotlinx.android.synthetic.main.list_item_cart.view.*
 
-class CartPageViewAdapter(private val BeveragesList:List<Beverage>): RecyclerView.Adapter<CartViewHolder>() {
+class CartPageViewAdapter(private val BeveragesList:List<Beverage>, private val clickListener:(Beverage)->Unit): RecyclerView.Adapter<CartViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -22,17 +22,20 @@ class CartPageViewAdapter(private val BeveragesList:List<Beverage>): RecyclerVie
     }
 
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
-        holder.bind(BeveragesList[position])
+        holder.bind(BeveragesList[position], clickListener)
     }
 
 }
 
 class CartViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
-    fun bind(Beverage: Beverage) {
+    fun bind(Beverage: Beverage, clickListener:(Beverage)->Unit) {
         view.cart_name_text_view.text = Beverage.name
         view.cart_text_view_price.text = "$" + Beverage.price.toString()
         view.cart_image_view_project_icon.setImageResource(Beverage.image)
+        view.button_remove_from_cart.setOnClickListener{
+            clickListener(Beverage)
+        }
         if (Beverage.promo) {
             view.cart_text_view_price.setTextColor(Color.parseColor("#F44336"))
         }

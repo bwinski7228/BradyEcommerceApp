@@ -7,7 +7,7 @@
     tools:context=".FirstFragment">
 
     <TextView
-        android:id="@+id/text_view_methods_title"
+        android:id="@+id/text_view_orders_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="50sp"
@@ -15,15 +15,15 @@
         android:textColor="@color/black"
         android:typeface="serif"
         android:background="@color/prim_blue"
-        android:text="Methods" />
+        android:text="Previous Orders" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/methods_recycler_view"
+        android:id="@+id/prev_orders_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
-        android:layout_below="@id/text_view_methods_title"
+        android:layout_below="@id/text_view_orders_title"
         android:background="#FFFFFF"
         tools:listitem="@layout/list_item" />
 
