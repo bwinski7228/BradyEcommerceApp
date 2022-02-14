@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.example.ecommerceapp.databinding.ActivityMainBinding
 import com.example.ecommerceapp.presentation.adapter.MyRecyclerViewAdapter
@@ -38,12 +39,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val navController = navHostFragment.navController
-        binding.bottomNavigationView.setupWithNavController(
+
+        /*binding.bottomNavigationView.setupWithNavController(
             navController
-        )
+        )*/
+
+        NavigationUI.setupWithNavController(binding.bottomNavigationView, navController)
         viewModel = ViewModelProvider(this, factory)
             .get(MainViewModel::class.java)
     }

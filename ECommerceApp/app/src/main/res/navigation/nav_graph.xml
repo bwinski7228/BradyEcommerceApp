@@ -4,29 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/firstFragment">
+
     <fragment
-        android:id="@+id/secondFragment2"
-        android:name="com.example.ecommerceapp.SecondFragment"
-        android:label="SecondFragment" />
+        android:id="@+id/firstFragment"
+        android:name="com.example.ecommerceapp.FirstFragment"
+        android:label="fragment_first"
+        tools:layout="@layout/fragment_first" />
     <fragment
         android:id="@+id/thirdFragment"
         android:name="com.example.ecommerceapp.ThirdFragment"
         android:label="ThirdFragment" />
     <fragment
-        android:id="@+id/firstFragment"
-        android:name="com.example.ecommerceapp.FirstFragment"
-        android:label="fragment_first"
-        tools:layout="@layout/fragment_first" >
-        <action
-            android:id="@+id/action_firstFragment_to_secondFragment2"
-            app:destination="@id/secondFragment2" />
-        <action
-            android:id="@+id/action_firstFragment_to_thirdFragment"
-            app:destination="@id/thirdFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/promoPage"
         android:name="com.example.ecommerceapp.PromoPage"
         android:label="promo_page"
         tools:layout="@layout/promo_page" />
+    <fragment
+        android:id="@+id/secondFragment"
+        android:name="com.example.ecommerceapp.SecondFragment"
+        android:label="SecondFragment" />
 </navigation>
