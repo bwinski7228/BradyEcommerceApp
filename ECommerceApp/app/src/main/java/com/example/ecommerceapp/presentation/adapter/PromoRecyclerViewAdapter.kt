@@ -16,7 +16,8 @@ import kotlinx.android.synthetic.main.list_item.view.*
 import java.io.InputStream
 import java.net.URL
 
-class MyRecyclerViewAdapter(private val clickListener:(ShopItem)->Unit): RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder>() {
+
+class PromoRecyclerViewAdapter(private val clickListener:(ShopItem)->Unit): RecyclerView.Adapter<PromoRecyclerViewAdapter.PromoViewHolder>() {
 
     private val callback = object : DiffUtil.ItemCallback<ShopItem>() {
         override fun areItemsTheSame(oldItem: ShopItem, newItem: ShopItem): Boolean {
@@ -31,22 +32,29 @@ class MyRecyclerViewAdapter(private val clickListener:(ShopItem)->Unit): Recycle
 
     val differ = AsyncListDiffer(this, callback)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+    var promoList: MutableList<ShopItem> = mutableListOf()
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PromoViewHolder {
         val binding = ListItemBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)
-        return MyViewHolder(binding)
+        /*getPromos()
+        println("Promolistlesgo: " + promoList)*/
+        return PromoViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
+        //var promoList = getPromos()
+        println("promolistinadapter: " + differ.currentList)
         return differ.currentList.size
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PromoRecyclerViewAdapter.PromoViewHolder, position: Int) {
+        //var promoList = getPromos()
         val shopItem = differ.currentList[position]
         holder.bind(shopItem, clickListener)
     }
 
-    inner class MyViewHolder(val binding : ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class PromoViewHolder(val binding : ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
 
         fun bind(shopItem: ShopItem, clickListener:(ShopItem)->Unit) {
@@ -57,14 +65,8 @@ class MyRecyclerViewAdapter(private val clickListener:(ShopItem)->Unit): Recycle
             Glide.with(binding.imageViewProjectIcon.context)
                 .load(shopItem.image)
                 .into(binding.imageViewProjectIcon)
-
-            /*binding.buttonAddToCart.setOnClickListener {
-                onItemClickListener?.let {
-                    it(shopItem)
-                }
-            }*/
             //binding.imageViewProjectIcon.src = LoadImageFromWebOperations(shopItem.image)
-            
+
             binding.buttonAddToCart.setOnClickListener{
                 clickListener(shopItem)
             }
@@ -83,10 +85,42 @@ class MyRecyclerViewAdapter(private val clickListener:(ShopItem)->Unit): Recycle
         }
     }
 
-    private var onItemClickListener :((ShopItem)->Unit)?=null
+}
 
-    fun setOnItemClickListener(listener : (ShopItem)->Unit){
-        onItemClickListener = listener
+
+
+
+
+/*
+class PromoRecyclerViewAdapter(private val BeveragesList:List<Beverage>, private val clickListener:(Beverage)->Unit): RecyclerView.Adapter<PromoViewHolder>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PromoViewHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val listItem = layoutInflater.inflate(R.layout.list_item, parent, false)
+        return PromoViewHolder(listItem)
+    }
+
+    override fun getItemCount(): Int {
+        return 3
+    }
+
+    override fun onBindViewHolder(holder: PromoViewHolder, position: Int) {
+        holder.bind(BeveragesList[position], clickListener)
     }
 
 }
+
+class PromoViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+
+    fun bind(Beverage: Beverage, clickListener:(Beverage)->Unit) {
+        view.name_text_view.text = Beverage.name
+        view.text_view_price.text = "$" + Beverage.price.toString()
+        view.image_view_project_icon.setImageResource(Beverage.image)
+        view.button_add_to_cart.setOnClickListener{
+            clickListener(Beverage)
+        }
+        if (Beverage.promo) {
+            view.text_view_price.setTextColor(Color.parseColor("#F44336"))
+        }
+    }
+}*/

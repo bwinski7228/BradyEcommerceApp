@@ -9,15 +9,26 @@ import androidx.lifecycle.*
 import com.example.ecommerceapp.Beverage
 import com.example.ecommerceapp.R
 import com.example.ecommerceapp.data.model.APIResponse
+import com.example.ecommerceapp.data.model.ShopItem
 import com.example.ecommerceapp.data.util.Resource
+import com.example.ecommerceapp.domain.usecase.AddItemToCartUseCase
+import com.example.ecommerceapp.domain.usecase.GetCartUseCase
 import com.example.ecommerceapp.domain.usecase.GetItemsUseCase
+import com.example.ecommerceapp.domain.usecase.GetPromoItemsUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class MainViewModel(/*startingCart : MutableList<Beverage>,*/ val app:Application, val getItemsUseCase: GetItemsUseCase) : AndroidViewModel(app) {
+class MainViewModel(/*startingCart : MutableList<Beverage>,*/
+    val app:Application,
+    val getItemsUseCase: GetItemsUseCase,
+    val getPromoItemsUseCase: GetPromoItemsUseCase,
+    val addItemToCartUseCase: AddItemToCartUseCase,
+    val getCartUseCase: GetCartUseCase
+    ) : AndroidViewModel(app) {
 
     val shopItems: MutableLiveData<Resource<APIResponse>> = MutableLiveData()
+    val promoItems: MutableLiveData<Resource<APIResponse>> = MutableLiveData()
 
     fun getShopItems() = viewModelScope.launch(Dispatchers.IO) {
         shopItems.postValue(Resource.Loading())
@@ -26,11 +37,28 @@ class MainViewModel(/*startingCart : MutableList<Beverage>,*/ val app:Applicatio
 
                 val apiResult = getItemsUseCase.execute()
                 shopItems.postValue(apiResult)
+                println("shopitemsbooga: " + shopItems.value)
             } else {
                 shopItems.postValue(Resource.Error("Internet is not available"))
             }
         } catch (e:Exception) {
             shopItems.postValue(Resource.Error(e.message.toString()))
+        }
+    }
+
+    fun getPromoItems() = viewModelScope.launch(Dispatchers.IO) {
+        promoItems.postValue(Resource.Loading())
+        try {
+            if (isNetworkAvailable(app)) {
+
+                val apiResult = getPromoItemsUseCase.execute()
+                promoItems.postValue(apiResult)
+                println("promoitemsbooga: " + promoItems.value)
+            } else {
+                promoItems.postValue(Resource.Error("Internet is not available"))
+            }
+        } catch (e:Exception) {
+            promoItems.postValue(Resource.Error(e.message.toString()))
         }
     }
 
@@ -84,8 +112,14 @@ class MainViewModel(/*startingCart : MutableList<Beverage>,*/ val app:Applicatio
         )
     }
 
-    fun addItemToList(newItem : Beverage) {
-        cartList.value?.add(newItem)
+    fun addItemToList(shopItem: ShopItem) = viewModelScope.launch {
+        addItemToCartUseCase.execute(shopItem)
+    }
+
+    fun getCart() = liveData {
+        getCartUseCase.execute().collect {
+            emit(it)
+        }
     }
 
 }

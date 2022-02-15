@@ -8,14 +8,14 @@ import java.util.*
 
 class ShopRemoteDataSourceImpl(
     private val shopAPIService: ShopAPIService
-/*    private val id: Int,
-    private val title: String,
-    private val price: String,
-    private val description: String,
-    private val image: String*/
+
 ): ShopRemoteDataSource {
     override suspend fun getItems(): Response<APIResponse> {
-        return shopAPIService.getItems(/*id, title, price, description, image*/)
+        return shopAPIService.getItems()
+    }
+
+    override suspend fun getPromoItems(): Response<APIResponse> {
+        return shopAPIService.getPromoItems()
     }
 
 }

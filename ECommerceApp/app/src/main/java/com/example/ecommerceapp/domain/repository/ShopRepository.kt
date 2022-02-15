@@ -9,6 +9,8 @@ interface ShopRepository {
 
     suspend fun getItems(): Resource<APIResponse>
 
+    suspend fun getPromoItems(): Resource<APIResponse>
+
     suspend fun addItemToCart(shopItem: ShopItem)
 
     suspend fun deleteItemInCart(shopItem: ShopItem)

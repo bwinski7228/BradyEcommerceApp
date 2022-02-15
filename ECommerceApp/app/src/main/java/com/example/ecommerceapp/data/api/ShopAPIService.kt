@@ -9,15 +9,9 @@ interface ShopAPIService {
 
     @GET("/products")
     suspend fun getItems(
-        /*@Query("id")
-        id: Int?,
-        @Query("title")
-        title: String?,
-        @Query("price")
-        price: String?,
-        @Query("description")
-        description: String?,
-        @Query("image")
-        image: String?*/
+    ): Response<APIResponse>
+
+    @GET("/products/category/electronics")
+    suspend fun getPromoItems(
     ): Response<APIResponse>
 }

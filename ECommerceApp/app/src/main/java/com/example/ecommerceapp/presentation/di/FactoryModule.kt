@@ -1,7 +1,10 @@
 package com.example.ecommerceapp.presentation.di
 
 import android.app.Application
+import com.example.ecommerceapp.domain.usecase.AddItemToCartUseCase
+import com.example.ecommerceapp.domain.usecase.GetCartUseCase
 import com.example.ecommerceapp.domain.usecase.GetItemsUseCase
+import com.example.ecommerceapp.domain.usecase.GetPromoItemsUseCase
 import com.example.ecommerceapp.presentation.viewmodel.MainViewModelFactory
 import dagger.Module
 import dagger.Provides
@@ -16,11 +19,17 @@ class FactoryModule {
     @Provides
     fun provideMainViewModelFactory(
         application: Application,
-        getItemsUseCase: GetItemsUseCase
+        getItemsUseCase: GetItemsUseCase,
+        getPromoItemsUseCase: GetPromoItemsUseCase,
+        addItemToCartUseCase: AddItemToCartUseCase,
+        getCartUseCase: GetCartUseCase
     ): MainViewModelFactory {
         return MainViewModelFactory(
             application,
-            getItemsUseCase
+            getItemsUseCase,
+            getPromoItemsUseCase,
+            addItemToCartUseCase,
+            getCartUseCase
         )
     }
 }

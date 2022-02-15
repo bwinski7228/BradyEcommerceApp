@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var factory: MainViewModelFactory
 
-    lateinit var newsAdapter: MyRecyclerViewAdapter
+    lateinit var shopAdapter: MyRecyclerViewAdapter
     lateinit var viewModel: MainViewModel
     private lateinit var binding: ActivityMainBinding
 

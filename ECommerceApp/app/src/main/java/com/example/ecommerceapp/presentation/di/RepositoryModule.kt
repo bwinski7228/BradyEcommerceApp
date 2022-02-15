@@ -1,6 +1,7 @@
 package com.example.ecommerceapp.presentation.di
 
 import com.example.ecommerceapp.data.repository.ShopRepositoryImpl
+import com.example.ecommerceapp.data.repository.dataSource.ShopLocalDataSource
 import com.example.ecommerceapp.data.repository.dataSource.ShopRemoteDataSource
 import com.example.ecommerceapp.domain.repository.ShopRepository
 import dagger.Module
@@ -15,8 +16,9 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideShopRepository(
-        shopRemoteDataSource: ShopRemoteDataSource
+        shopRemoteDataSource: ShopRemoteDataSource,
+        shopLocalDataSource: ShopLocalDataSource
     ) : ShopRepository {
-        return ShopRepositoryImpl(shopRemoteDataSource)
+        return ShopRepositoryImpl(shopRemoteDataSource, shopLocalDataSource)
     }
 }

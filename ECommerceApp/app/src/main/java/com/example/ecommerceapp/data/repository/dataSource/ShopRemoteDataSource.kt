@@ -5,4 +5,5 @@ import retrofit2.Response
 
 interface ShopRemoteDataSource {
     suspend fun getItems():Response<APIResponse>
+    suspend fun getPromoItems():Response<APIResponse>
 }
