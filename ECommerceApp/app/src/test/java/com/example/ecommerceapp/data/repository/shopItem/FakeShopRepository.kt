@@ -15,19 +15,14 @@ import kotlinx.coroutines.flow.flowOf
 class FakeShopRepository: ShopRepository {
 
     private var cart = flowOf(mutableListOf<ShopItem>())
+    private var users = mutableListOf<User>()
 
     init {
         val rating = Rating(1,1.0)
         cart = flowOf(mutableListOf((ShopItem(1, "jewelry", "Hello", 1, "placeholder", 22.2, rating, "Ring", false)), ShopItem(2, "jewelry", "Hello", 1, "placeholder", 22.2, rating, "Necklace", false)))
+        users = mutableListOf(User(1, "Brady", "bwinski@gmail.com", 1), User(1, "Jack", "bwinski@gmail.com", 1), User(1, "Liam", "bwinski@gmail.com", 1))
     }
 
-    override suspend fun getItems(): Resource<APIResponse> {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun getPromoItems(): Resource<APIResponse> {
-        TODO("Not yet implemented")
-    }
 
     override suspend fun addItemToCart(shopItem: ShopItem) {
         var oldCart = cart.first()
@@ -50,10 +45,18 @@ class FakeShopRepository: ShopRepository {
     }
 
     override suspend fun addUser(user: User) {
-        TODO("Not yet implemented")
+        users.add(user)
     }
 
     override fun getUsers(): MutableList<User> {
+        return users
+    }
+
+    override suspend fun getItems(): Resource<APIResponse> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getPromoItems(): Resource<APIResponse> {
         TODO("Not yet implemented")
     }
 }

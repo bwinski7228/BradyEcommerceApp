@@ -80,6 +80,7 @@ class PromoPage: Fragment(R.layout.promo_page) {
     }
 
     private fun listItemClicked(shopItem: ShopItem) {
+        viewModel.addItemToList(shopItem)
         Toast.makeText(
             activity,
             "${shopItem.title} has been added to your cart", Toast.LENGTH_LONG
