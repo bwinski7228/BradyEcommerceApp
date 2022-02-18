@@ -1,4 +1,4 @@
-package com.example.ecommerceapp
+package com.example.ecommerceapp.old
 
 import android.graphics.drawable.Drawable
 

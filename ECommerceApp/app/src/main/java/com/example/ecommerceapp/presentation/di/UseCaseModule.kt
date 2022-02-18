@@ -3,10 +3,7 @@ package com.example.ecommerceapp.presentation.di
 import com.example.ecommerceapp.data.repository.ShopRepositoryImpl
 import com.example.ecommerceapp.data.repository.dataSource.ShopRemoteDataSource
 import com.example.ecommerceapp.domain.repository.ShopRepository
-import com.example.ecommerceapp.domain.usecase.AddItemToCartUseCase
-import com.example.ecommerceapp.domain.usecase.GetCartUseCase
-import com.example.ecommerceapp.domain.usecase.GetItemsUseCase
-import com.example.ecommerceapp.domain.usecase.GetPromoItemsUseCase
+import com.example.ecommerceapp.domain.usecase.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,5 +42,37 @@ class UseCaseModule {
         shopRepository: ShopRepository
     ) : GetCartUseCase {
         return GetCartUseCase(shopRepository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideDeleteItemInCartUseCase(
+        shopRepository: ShopRepository
+    ) : DeleteItemInCartUseCase {
+        return DeleteItemInCartUseCase(shopRepository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideClearCartUseCase(
+        shopRepository: ShopRepository
+    ) : ClearCartUseCase {
+        return ClearCartUseCase(shopRepository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAddUserUseCase(
+        shopRepository: ShopRepository
+    ) : AddUserUseCase {
+        return AddUserUseCase(shopRepository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideGetUsersUseCase(
+        shopRepository: ShopRepository
+    ) : GetUsersUseCase {
+        return GetUsersUseCase(shopRepository)
     }
 }

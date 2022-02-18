@@ -1,9 +1,6 @@
 package com.example.ecommerceapp.data.db
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.example.ecommerceapp.data.model.ShopItem
 import kotlinx.coroutines.flow.Flow
 
@@ -14,4 +11,10 @@ interface ShopItemDAO {
 
     @Query("SELECT * FROM shopItems")
     fun getShopItems(): Flow<List<ShopItem>>
+
+    @Delete
+    suspend fun deleteShopItem(shopItem: ShopItem)
+
+    @Query("DELETE FROM shopItems")
+    suspend fun clearCart()
 }

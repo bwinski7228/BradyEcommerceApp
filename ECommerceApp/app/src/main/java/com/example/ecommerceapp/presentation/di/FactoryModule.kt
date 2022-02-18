@@ -1,10 +1,7 @@
 package com.example.ecommerceapp.presentation.di
 
 import android.app.Application
-import com.example.ecommerceapp.domain.usecase.AddItemToCartUseCase
-import com.example.ecommerceapp.domain.usecase.GetCartUseCase
-import com.example.ecommerceapp.domain.usecase.GetItemsUseCase
-import com.example.ecommerceapp.domain.usecase.GetPromoItemsUseCase
+import com.example.ecommerceapp.domain.usecase.*
 import com.example.ecommerceapp.presentation.viewmodel.MainViewModelFactory
 import dagger.Module
 import dagger.Provides
@@ -22,14 +19,22 @@ class FactoryModule {
         getItemsUseCase: GetItemsUseCase,
         getPromoItemsUseCase: GetPromoItemsUseCase,
         addItemToCartUseCase: AddItemToCartUseCase,
-        getCartUseCase: GetCartUseCase
+        getCartUseCase: GetCartUseCase,
+        deleteItemInCartUseCase: DeleteItemInCartUseCase,
+        clearCartUseCase: ClearCartUseCase,
+        addUserUseCase: AddUserUseCase,
+        getUsersUseCase: GetUsersUseCase
     ): MainViewModelFactory {
         return MainViewModelFactory(
             application,
             getItemsUseCase,
             getPromoItemsUseCase,
             addItemToCartUseCase,
-            getCartUseCase
+            getCartUseCase,
+            deleteItemInCartUseCase,
+            clearCartUseCase,
+            addUserUseCase,
+            getUsersUseCase
         )
     }
 }

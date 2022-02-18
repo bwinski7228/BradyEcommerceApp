@@ -52,7 +52,7 @@ class CartViewHolder(val binding : ListItemCartBinding) : RecyclerView.ViewHolde
 
     fun bind(shopItem: ShopItem, clickListener:(ShopItem)->Unit) {
         binding.cartNameTextView.text = shopItem.title
-        binding.cartTextViewPrice.text = "$" + shopItem.price.toString()
+        binding.cartTextViewPrice.text = "$" + String.format("%.2f", shopItem.price)
         Glide.with(binding.cartImageViewProjectIcon.context)
             .load(shopItem.image)
             .into(binding.cartImageViewProjectIcon)

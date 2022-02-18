@@ -51,7 +51,7 @@ class MyRecyclerViewAdapter(private val clickListener:(ShopItem)->Unit): Recycle
 
         fun bind(shopItem: ShopItem, clickListener:(ShopItem)->Unit) {
             binding.nameTextView.text = shopItem.title
-            binding.textViewPrice.text = "$" + shopItem.price.toString()
+            binding.textViewPrice.text = "$" + String.format("%.2f", shopItem.price)
             //binding.imageViewProjectIcon.setImageResource(ShopItem.image)
 
             Glide.with(binding.imageViewProjectIcon.context)
@@ -63,7 +63,6 @@ class MyRecyclerViewAdapter(private val clickListener:(ShopItem)->Unit): Recycle
                     it(shopItem)
                 }
             }*/
-            //binding.imageViewProjectIcon.src = LoadImageFromWebOperations(shopItem.image)
             
             binding.buttonAddToCart.setOnClickListener{
                 clickListener(shopItem)
@@ -71,15 +70,6 @@ class MyRecyclerViewAdapter(private val clickListener:(ShopItem)->Unit): Recycle
             /*if (ShopItem.promo) {
                 binding.textViewPrice.setTextColor(Color.parseColor("#F44336"))
             }*/
-        }
-
-        fun LoadImageFromWebOperations(url: kotlin.String?): Drawable? {
-            return try {
-                val `is`: InputStream = URL(url).getContent() as InputStream
-                Drawable.createFromStream(`is`, "src name")
-            } catch (e: java.lang.Exception) {
-                null
-            }
         }
     }
 

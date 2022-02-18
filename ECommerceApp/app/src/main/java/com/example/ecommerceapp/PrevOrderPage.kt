@@ -3,27 +3,31 @@ package com.example.ecommerceapp
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.ecommerceapp.data.model.Rating
+import com.example.ecommerceapp.data.model.ShopItem
+import com.example.ecommerceapp.old.Beverage
 import kotlinx.android.synthetic.main.prev_order_page.*
 
 class PrevOrderPage: AppCompatActivity() {
 
+    val rating = Rating(1,1.0)
+
     val orderList1 = listOf(
-        Beverage("Coke", "Coke Classic", "Coca-Cola", .99, R.drawable.coke_can),
-        Beverage("Sprite", "Sprite", "Coca-Cola", .49, R.drawable.sprite, true),
-        Beverage("Mountain Dew", "Mountain Dew", "Pepsi", .99, R.drawable.mtn_dew),
+        ShopItem(1, "", "", 1, "", 22.2, rating, "Mens Casual Premium Slim Fit T-Shirts", false),
+        ShopItem(1, "", "", 1, "", 22.2, rating, "Mens Cotton Jacket", false),
+        ShopItem(1, "", "", 1, "", 22.2, rating, "Mens Casual Slim Fit", false)
     )
 
     val orderList2 = listOf(
-        Beverage("Coke", "Vanilla Coke", "Coca-Cola", 1.49, R.drawable.coca_cola_vanilla),
-        Beverage("Mountain Dew", "Mountain Dew Baja Blast", "Pepsi", .99, R.drawable.baja_blast, true),
+        ShopItem(1, "", "", 1, "", 22.2, rating, "Solid Gold Petite Mircopave", false),
+        ShopItem(1, "", "", 1, "", 22.2, rating, "White Gold Plated Princess", false),
+        ShopItem(1, "", "", 1, "", 22.2, rating, "Mens Casual Premium Slim Fit T-Shirts", false)
     )
 
     val orderList3 = listOf(
-        Beverage("Coke", "Coke Classic", "Coca-Cola", .99, R.drawable.coke_can),
-        Beverage("Coke", "Vanilla Coke", "Coca-Cola", 1.49, R.drawable.coca_cola_vanilla),
-        Beverage("Mountain Dew", "Mountain Dew Baja Blast", "Pepsi", .99, R.drawable.baja_blast, true),
-        Beverage("Sprite", "Sprite", "Coca-Cola", .49, R.drawable.sprite, true),
-        Beverage("Mountain Dew", "Mountain Dew", "Pepsi", .99, R.drawable.mtn_dew),
+        ShopItem(1, "", "", 1, "", 22.2, rating, "Solid Gold Petite Mircopave", false),
+        ShopItem(1, "", "", 1, "", 22.2, rating, "Mens Casual Premium Slim Fit T-Shirts", false),
+        ShopItem(1, "", "", 1, "", 22.2, rating, "Mens Cotton Jacket", false)
     )
 
     val prevOrderList = listOf(orderList1, orderList2, orderList3)

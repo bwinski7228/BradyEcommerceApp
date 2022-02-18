@@ -59,7 +59,7 @@ class PromoRecyclerViewAdapter(private val clickListener:(ShopItem)->Unit): Recy
 
         fun bind(shopItem: ShopItem, clickListener:(ShopItem)->Unit) {
             binding.nameTextView.text = shopItem.title
-            binding.textViewPrice.text = "$" + shopItem.price.toString()
+            binding.textViewPrice.text = "$" + String.format("%.2f", shopItem.price)
             //binding.imageViewProjectIcon.setImageResource(ShopItem.image)
 
             Glide.with(binding.imageViewProjectIcon.context)

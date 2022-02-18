@@ -1,6 +1,7 @@
 package com.example.ecommerceapp.presentation.di
 
 import com.example.ecommerceapp.data.db.ShopItemDAO
+import com.example.ecommerceapp.data.db.UserDAO
 import com.example.ecommerceapp.data.repository.dataSource.ShopLocalDataSource
 import com.example.ecommerceapp.data.repository.dataSourceImpl.ShopLocalDataSourceImpl
 import dagger.Module
@@ -14,7 +15,7 @@ import javax.inject.Singleton
 class LocalDataModule {
     @Singleton
     @Provides
-    fun provideLocalDataSource(shopItemDAO: ShopItemDAO): ShopLocalDataSource {
-        return ShopLocalDataSourceImpl(shopItemDAO)
+    fun provideLocalDataSource(shopItemDAO: ShopItemDAO, userDAO: UserDAO): ShopLocalDataSource {
+        return ShopLocalDataSourceImpl(shopItemDAO, userDAO)
     }
 }

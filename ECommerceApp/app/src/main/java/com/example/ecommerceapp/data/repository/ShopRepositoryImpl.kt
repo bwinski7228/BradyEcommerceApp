@@ -2,6 +2,7 @@ package com.example.ecommerceapp.data.repository
 
 import com.example.ecommerceapp.data.model.APIResponse
 import com.example.ecommerceapp.data.model.ShopItem
+import com.example.ecommerceapp.data.model.User
 import com.example.ecommerceapp.data.repository.dataSource.ShopLocalDataSource
 import com.example.ecommerceapp.data.repository.dataSource.ShopRemoteDataSource
 import com.example.ecommerceapp.data.util.Resource
@@ -35,10 +36,22 @@ class ShopRepositoryImpl(
     }
 
     override suspend fun deleteItemInCart(shopItem: ShopItem) {
-        TODO("Not yet implemented")
+        shopLocalDataSource.deleteShopItemFromDB(shopItem)
     }
 
     override fun getCart(): Flow<List<ShopItem>> {
         return shopLocalDataSource.getCart()
+    }
+
+    override suspend fun clearCart() {
+        return shopLocalDataSource.clearCart()
+    }
+
+    override suspend fun addUser(user: User) {
+        return shopLocalDataSource.saveUserToDB(user)
+    }
+
+    override fun getUsers(): MutableList<User> {
+        return shopLocalDataSource.getUsers()
     }
 }

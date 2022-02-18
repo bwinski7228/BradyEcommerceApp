@@ -6,29 +6,34 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.lifecycle.*
-import com.example.ecommerceapp.Beverage
-import com.example.ecommerceapp.R
 import com.example.ecommerceapp.data.model.APIResponse
 import com.example.ecommerceapp.data.model.ShopItem
+import com.example.ecommerceapp.data.model.User
 import com.example.ecommerceapp.data.util.Resource
-import com.example.ecommerceapp.domain.usecase.AddItemToCartUseCase
-import com.example.ecommerceapp.domain.usecase.GetCartUseCase
-import com.example.ecommerceapp.domain.usecase.GetItemsUseCase
-import com.example.ecommerceapp.domain.usecase.GetPromoItemsUseCase
+import com.example.ecommerceapp.domain.usecase.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class MainViewModel(/*startingCart : MutableList<Beverage>,*/
+class MainViewModel(
     val app:Application,
     val getItemsUseCase: GetItemsUseCase,
     val getPromoItemsUseCase: GetPromoItemsUseCase,
     val addItemToCartUseCase: AddItemToCartUseCase,
-    val getCartUseCase: GetCartUseCase
+    val getCartUseCase: GetCartUseCase,
+    val deleteItemInCartUseCase: DeleteItemInCartUseCase,
+    val clearCartUseCase: ClearCartUseCase,
+    val addUserUseCase: AddUserUseCase,
+    val getUsersUseCase: GetUsersUseCase
     ) : AndroidViewModel(app) {
 
     val shopItems: MutableLiveData<Resource<APIResponse>> = MutableLiveData()
     val promoItems: MutableLiveData<Resource<APIResponse>> = MutableLiveData()
+    val description = MutableLiveData<String>()
+
+    init {
+        description.value = "Two-way data binding is fun!"
+    }
 
     fun getShopItems() = viewModelScope.launch(Dispatchers.IO) {
         shopItems.postValue(Resource.Loading())
@@ -37,7 +42,6 @@ class MainViewModel(/*startingCart : MutableList<Beverage>,*/
 
                 val apiResult = getItemsUseCase.execute()
                 shopItems.postValue(apiResult)
-                println("shopitemsbooga: " + shopItems.value)
             } else {
                 shopItems.postValue(Resource.Error("Internet is not available"))
             }
@@ -53,7 +57,6 @@ class MainViewModel(/*startingCart : MutableList<Beverage>,*/
 
                 val apiResult = getPromoItemsUseCase.execute()
                 promoItems.postValue(apiResult)
-                println("promoitemsbooga: " + promoItems.value)
             } else {
                 promoItems.postValue(Resource.Error("Internet is not available"))
             }
@@ -90,28 +93,6 @@ class MainViewModel(/*startingCart : MutableList<Beverage>,*/
 
     }
 
-
-    val cartList = MutableLiveData<MutableList<Beverage>>()
-    val cartListData : LiveData<MutableList<Beverage>>
-    get() = cartList
-
-    val bevList = MutableLiveData<MutableList<Beverage>>()
-    val bevListData : LiveData<MutableList<Beverage>>
-    get() = bevList
-
-    init {
-        //cartList.value = startingCart
-        bevList.value = mutableListOf(
-            Beverage("Coke", "Coke Classic", "Coca-Cola", .99, R.drawable.coke_can),
-            Beverage("Coke", "Vanilla Coke", "Coca-Cola", 1.49, R.drawable.coca_cola_vanilla ),
-            Beverage("Coke", "Cherry Coke", "Coca-Cola", 1.99, R.drawable.cherry_coke),
-            Beverage("Sprite", "Sprite", "Coca-Cola", .99, R.drawable.sprite, true),
-            Beverage("Mountain Dew", "Mountain Dew", "Pepsi", .99, R.drawable.mtn_dew),
-            Beverage("Mountain Dew", "Mountain Dew Baja Blast", "Pepsi", 1.49, R.drawable.baja_blast, true),
-            Beverage("Mountain Dew", "Mountain Dew Code Red", "Pepsi", 1.99, R.drawable.code_red, true),
-        )
-    }
-
     fun addItemToList(shopItem: ShopItem) = viewModelScope.launch {
         addItemToCartUseCase.execute(shopItem)
     }
@@ -120,6 +101,22 @@ class MainViewModel(/*startingCart : MutableList<Beverage>,*/
         getCartUseCase.execute().collect {
             emit(it)
         }
+    }
+
+    fun deleteShopItem(shopItem: ShopItem) = viewModelScope.launch {
+        deleteItemInCartUseCase.execute(shopItem)
+    }
+
+    fun clearCart() = viewModelScope.launch {
+        clearCartUseCase.execute()
+    }
+
+    fun addUserToList(user: User) = viewModelScope.launch {
+        addUserUseCase.execute(user)
+    }
+
+    fun getUsers() : List<User> {
+        return getUsersUseCase.execute()
     }
 
 }

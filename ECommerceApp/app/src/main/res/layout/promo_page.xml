@@ -17,12 +17,12 @@
         android:id="@+id/text_view_promo_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="50sp"
-        android:textAlignment="center"
-        android:typeface="serif"
-        android:textColor="@color/black"
         android:background="@color/prim_blue"
-        android:text="Deals" />
+        android:text="Deals"
+        android:textAlignment="center"
+        android:textColor="#EAEAEA"
+        android:textSize="50sp"
+        android:typeface="serif" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/promo_recycler_view"
