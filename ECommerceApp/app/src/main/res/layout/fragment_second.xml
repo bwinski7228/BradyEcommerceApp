@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/text_view_checkout_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/prim_blue"
+        android:text="Cart"
+        android:textAlignment="center"
+        android:textColor="#EAEAEA"
+        android:textSize="50sp"
+        android:typeface="serif" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cart_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_below="@id/text_view_checkout_title"
+        tools:listitem="@layout/list_item"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:background="#FFFFFF"
+        android:scrollbars="horizontal"/>
+
+    <TextView
+        android:id="@+id/text_view_checkout_total"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cart_recycler_view"
+        android:textSize="50sp"
+        android:textAlignment="center"
+        android:text="Total: $5.00" />
+
+    <RelativeLayout
+        android:id="@+id/layout_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_view_checkout_total"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal">
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_project_icon_container1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_alignLeft="@id/dummy_view"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp">
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/Widget.AppCompat.Button"
+                android:id="@+id/clear_cart_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:background="#F44336"
+                android:backgroundTint="#F44336"
+                android:text="Clear Cart"
+                android:textSize="24sp"
+                app:iconTint="#E53935" />
+
+        </androidx.cardview.widget.CardView>
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/dummy_view"
+            android:layout_centerHorizontal="true"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_project_icon_container2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@id/dummy_view"
+            android:layout_marginRight="3dp"
+            android:layout_marginLeft="3dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp">
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/Widget.AppCompat.Button"
+                android:id="@+id/checkout_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:background="#4CAF50"
+                android:backgroundTint="#4CAF50"
+                android:text="Checkout"
+                android:textSize="24sp"
+                app:iconTint="#E53935" />
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+</RelativeLayout>
